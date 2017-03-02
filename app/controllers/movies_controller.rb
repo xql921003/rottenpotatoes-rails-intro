@@ -1,5 +1,5 @@
 class MoviesController < ApplicationController
-  helper_method :sort_column, :sort_order
+ helper_method :ratings_filter, :sort_column, :sort_order
   def movie_params
     params.require(:movie).permit(:title, :rating, :description, :release_date)
   end
@@ -71,5 +71,14 @@ class MoviesController < ApplicationController
       %w[asc desc].include?(params[:direction]) ?  "asc" : "desc"
   end
   
+  def ratings_filter
+      if params[:ratings]
+          params[:ratings]
+          elsif !session[:ratings]
+          Hash[Movie.ratings.map { |x| [x, 1] }]
+          else
+          session[:ratings]
+      end
+  end
 
 end
