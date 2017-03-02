@@ -12,9 +12,9 @@ class MoviesController < ApplicationController
 
   def index
       
-    redirect = false
+    redirect = 0
     if params[:ratings] != ratings_filter
-        redirect = true
+        redirect = 1
     end
     
     if session[:ratings] != ratings_filter
@@ -24,7 +24,7 @@ class MoviesController < ApplicationController
         session[:sort] = sort_column
     end
     
-    if redirect
+    if redirect==1
         flash.keep
         redirect_to movies_path(:sort => session[:sort], :ratings => session[:ratings])
         else
@@ -62,7 +62,7 @@ class MoviesController < ApplicationController
     redirect_to movies_path
   end
   private
-
+  # part1&2
   def sort_column
       Movie.column_names.include?(params[:sort]) ? params[:sort] : session[:sort]
   end

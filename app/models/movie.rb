@@ -1,8 +1,9 @@
 class Movie < ActiveRecord::Base
-    def self.ratings
+# part2 ratings
+	def self.ratings
     %w(G PG PG-13 R)
 end
-
+# part1&2: sorting and filtering
 def self.conditions_orders(ratings, order_by_column)
 movies = Movie.all
 movies = movies.where(:rating => ratings)
