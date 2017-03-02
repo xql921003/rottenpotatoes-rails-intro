@@ -11,7 +11,7 @@ class MoviesController < ApplicationController
   end
 
   def index
-      
+      # part 3
     redirect = 0
     if params[:ratings] != ratings_filter
         redirect = 1
